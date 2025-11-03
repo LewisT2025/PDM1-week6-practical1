@@ -47,6 +47,47 @@
                     <p>You will also need to implement the p5.js <code>preload()</code> function. In the function, call <a href="https://p5js.org/reference/p5/loadFont" target="_blank">loadFont()</a> to load 
                     each font file and store them in the global variables. You need to supply <code>loadFont()</code> with the path to a font file. Assuming your fonts are 
                     stored in the assets folder, your path will begin with "assets/". Don't forget the file extension, likely .ttf, when specifying the file path.</p>
+                    <p>To switch between the two fonts, you will need a third global variable, which will track which font is active. When the "f" key is pressed, use a 
+                        simple conditional (if - else) to check which font is active, then switch to the other font. Here is some partial code to help you get started:
+                    </p>
+                    <pre>
+let font1; // A global variable to store the first font
+let font2; // A global variable to store the second font 
+let currentFont; // A global variable that will track which font is active
+
+function preload() {
+    // Call loadFont() to load font 1 and 2:
+    font1 = loadFont("assets/your-font-file1.ttf");
+    font2 = loadFont("assets/your-font-file2.ttf");
+
+    // don't set currentFont yet!
+}
+
+function setup() {
+    // create the canvas first...
+
+    // then set currentFont
+    currentFont = font1;
+
+    textFont(currentFont); // use the first font when the sketch starts
+}
+
+function draw() {
+    // Draw the text here...
+}
+
+function keyPressed() {
+    // check which key is pressed (you will need to fill this in)
+    // swap the fonts
+    if (currentFont === font1) {
+        currentFont = font2;
+    } else {
+        currentFont = font1;
+    }
+
+    // Don't forget to use textFont to set the font...
+}
+                    </pre>
                 </div>
             </div>
         </div>
